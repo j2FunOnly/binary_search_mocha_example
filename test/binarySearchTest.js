@@ -3,17 +3,25 @@ const assert = require('assert');
 const binarySearch = require('../lib/binarySearch.js');
 
 describe('binarySearch', () => {
-  it ('return index of the item found', () => {
-    const target = 4;
-    const arr = [1, 2, 4, 5, 8];
+  const arr = [1, 2, 4, 5, 8];
 
-    assert.equal(binarySearch(target, arr), 2);
+  describe('item found', () => {
+    it('return index of the item found', () => {
+      assert.equal(binarySearch(4, arr), 2);
+    });
+
+    it('when in array onr element', () => {
+      assert.equal(binarySearch(2, [2]), 0);
+    });
   });
 
-  it ('return "-1" if item not found', () => {
-    const target = 3;
-    const arr = [1, 2, 4, 5, 8];
+  describe('return -1 when item not found', () => {
+    it('empty array', () => {
+      assert.equal(binarySearch(42, []), -1);
+    });
 
-    assert.equal(binarySearch(target, arr), -1);
+    it('array without desired item', () => {
+      assert.equal(binarySearch(3, arr), -1);
+    });
   });
 });
